@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  rtrs-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rtrs-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:5000/api/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

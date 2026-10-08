@@ -1,0 +1,9 @@
+**/node_modules/
+**/dist/
+**/.angular/
+**/.env
+**/.env.*
+!**/.env.example
+backend/data/
+backend/backup_geo_replica/
+*.log
